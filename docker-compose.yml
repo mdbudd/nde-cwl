@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+
+  # solr2:
+  #   container_name: solr2
+  #   build: 
+  #     context: ./
+  #     dockerfile: ./docker/solr/Dockerfile
+  #   ports:
+  #    - "8983:8983"
+  #    - "8984:8984"
+  #   volumes:
+  #     # - ./data/Documents:/opt/solr-9.4.0/Documents
+  #     - ./data:/var/solr/data
+  #     - ./data/search_configs:/var/solr/configsets/search_configs:rw
+
+  node2:
+    container_name: node2
+    build:
+      context: .
+      dockerfile: /docker/node/Dockerfile
+      target: node
+    volumes:
+      # - .:/srv/app
+      - .:/usr/src/app
+      - ./data:/usr/src/app/data
+      - /usr/src/app/node_modules
+    # working_dir: /srv/app
+    ports:
+      - "8081:8081"
+
+  # python2:
+  #   container_name: python2
+  #   build:
+  #     context: .
+  #     dockerfile: /docker/python/Dockerfile
+  #     target: python
+  #   ports:
+  #     - "8001:8001"
+  #   volumes:
+  #     - ./python:/python
+  
+# create external-net if it doesn't exist
+networks: 
+  default:  
+    name: external-net
+    external: true
