@@ -36,7 +36,7 @@ app.get("/swagger.json", (req, res) => {
   res.send(specs)
 })
 app.get("/random", (req: Request, res: Response) => {
-  res.json({ message: "Hello World!" })
+  res.json({ message: "Hello World!", env: process.env.NODE_ENV == "development" ? process.env : null })
 })
 
 app.get<{}, MessageResponse>("/", (req, res) => {
