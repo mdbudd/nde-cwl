@@ -18,7 +18,7 @@ export const crawleer = () => {
     client.commit()
   })
   var fs = require("fs")
-  var dataDir = "/usr/src/app/data/crawlee"
+  var dataDir = "/opt/data/crawlee"
   var screens = `${dataDir}/screens`
   // getCategories(`${__dirname}/website_category_listing.xlsx`, dataDir)
 

@@ -5,19 +5,23 @@
   "main": "index.js",
   "nodemonConfig": {
     "watch": [
-      "src"
+      "/opt/app/**/*"
+    ],
+    "ignore": [
+      "/opt/app/node_modules",
+      "/opt/app/storage"
     ],
     "ext": "ts,js,json,php"
   },
   "scripts": {
-    "server": "nodemon -L --exec ts-node src/index.ts",
-    "start": "ts-node src/index.ts",
-    "dev": "nodemon src/index.ts",
+    "server": "nodemon -L --exec ts-node ./index.ts",
+    "start": "ts-node ./index.ts",
+    "dev": "nodemon ./index.ts",
     "build": "tsc",
     "lint": "eslint --fix src __tests__",
     "test": "jest --coverage",
     "typecheck": "tsc --noEmit",
-    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write"
+    "prettier-format": "prettier --config .prettierrc './**/*.ts' --write"
   },
   "author": "",
   "license": "ISC",

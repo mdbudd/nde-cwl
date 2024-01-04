@@ -18,3 +18,7 @@ data/*
 !data/search_configs
 !data/solr.xml
 !data/.keep
+src/data/*
+!src/data/search_configs
+!src/data/solr.xml
+!src/data/.keep

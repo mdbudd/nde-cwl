@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get("/crawl", (req: Request, res: Response) => {
   // crawlee()
-  const worker = new Worker("./src/api/crawler/worker.js", {
+  const worker = new Worker("./api/crawler/worker.js", {
     workerData: {
       path: "./crawleer.ts",
     },
