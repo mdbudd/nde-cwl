@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  node:
+    container_name: node
+    build:
+      context: .
+      dockerfile: /docker/node/Dockerfile
+      target: node
+    volumes:
+      # - .:/srv/app
+      - .:/usr/src/app
+      - ./data:/usr/src/app/data
+    # working_dir: /srv/app
+    ports:
+      - "8081:8081"
+    # command: >
+    #   bash -c '
+    #     npm install;
+    #     # npx playwright install;
+    #     # npx playwright install-deps;
+    #     npx puppeteer browsers install chrome;
+    #     npm audit fix --force;
+    #     npm audit fix;
+    #     npm run server;
+    #     tail -F dev/null;
+    #   '
+  python:
+    container_name: python
+    build:
+      context: .
+      dockerfile: /docker/python/Dockerfile
+      target: python
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./python:/python
+
+
+  
+# create external-net if it doesn't exist
+networks: 
+  default:  
+    name: external-net
+    external: true

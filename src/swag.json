@@ -1,0 +1,39 @@
+{
+  "tags": {
+    "name": "Parsers",
+    "description": "services to parse input into various formats, usually json"
+  },
+  "/api/v1/parse/lucene?search={query}": {
+    "get": {
+      "summary": "json representation of lucene url query",
+      "tags": ["Parsers"],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "query",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "minimum": 1
+          },
+          "description": "The lucene query"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "json representation of lucene url query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Lucene"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

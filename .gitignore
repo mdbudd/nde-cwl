@@ -1,0 +1,24 @@
+dist
+coverage
+/src/db
+node_modules
+storage
+
+# dotenv environment variables file
+.env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# allow data generation
+python/flask/data/*
+!python/flask/data/.keep
+data/*
+!data/search_configs
+!data/solr.xml
+!data/.keep
+src/data/*
+!src/data/search_configs
+!src/data/solr.xml
+!src/data/.keep
