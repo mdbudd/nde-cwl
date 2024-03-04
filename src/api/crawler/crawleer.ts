@@ -1,11 +1,11 @@
-import { /*Dataset,*/ PuppeteerCrawler, puppeteerUtils } from "crawlee"
+import { Dataset, PuppeteerCrawler, puppeteerUtils, Configuration } from "crawlee"
 import { parentPort } from "worker_threads"
 import {
   getExtensionFromUrl,
   getContentType,
   getCategories,
   cleanUrl,
-  getImageData,
+  getImageData
 } from "./utils/helpers"
 import { swap, client } from "./solr"
 import sites from "./sites-2.json"
@@ -27,7 +27,7 @@ export const crawleer = () => {
   const screens = `${crawlDir}/screens`
   const cats = getCategories(
     `${__dirname}/website_category_listing.xlsx`,
-    crawlDir,
+    crawlDir
   )
 
   if (!fs.existsSync(screens)) {
@@ -36,7 +36,7 @@ export const crawleer = () => {
   }
 
   var obj = {
-    table: [],
+    table: []
   }
 
   const contentTypes = [
@@ -47,7 +47,7 @@ export const crawleer = () => {
     { name: "powerpoint", extensions: ["ppt", "pptx"] },
     { name: "web page", extensions: ["html", "htm", "asp", "aspx", "php"] },
     { name: "sound", extensions: ["mp3"] },
-    { name: "video", extensions: ["mp4"] },
+    { name: "video", extensions: ["mp4"] }
   ]
   const mediaExts = []
   contentTypes
@@ -56,14 +56,18 @@ export const crawleer = () => {
     })
     .map((item) => item.extensions.map((item1) => mediaExts.push(item1)))
   console.log(mediaExts)
+  const config = Configuration.getGlobalConfig()
 
+  config.set("memoryMbytes", 6000)
+
+  console.log(config.get("memoryMbytes"))
   const crawler = new PuppeteerCrawler({
     launchContext: {
       launchOptions: {
         // https://github.com/puppeteer/puppeteer/issues/1813 // false, no work
         headless: "new",
-        args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      },
+        args: ["--no-sandbox", "--disable-setuid-sandbox"]
+      }
     },
     maxRequestsPerCrawl: 100000,
     navigationTimeoutSecs: 20,
@@ -95,7 +99,7 @@ export const crawleer = () => {
           main_content: "",
           category: catunit?.cat || "Other",
           unit_name: catunit?.unit || "Other",
-          full_content: "",
+          full_content: ""
           // charset: "utf8"
         }
 
@@ -131,7 +135,7 @@ export const crawleer = () => {
         if (imageTypes.includes(ext)) {
           newDoc.doc_type = "image"
           newDoc.main_content = JSON.stringify(
-            await getImageData(request.url, null),
+            await getImageData(request.url, null)
           )
 
           client.add(newDoc, function (err, response) {
@@ -142,7 +146,7 @@ export const crawleer = () => {
             // client.commit()
           })
         }
-      },
+      }
     ],
     async requestHandler({ request, page, enqueueLinks, log }) {
       const ext = getExtensionFromUrl(request.url)
@@ -226,11 +230,13 @@ export const crawleer = () => {
           main_content: JSON.stringify(extractedText),
           full_content: JSON.stringify(fullText),
           category: catunit?.cat || "Other",
-          unit_name: catunit?.unit || "Other",
+          unit_name: catunit?.unit || "Other"
           // charset,
           // metas
         }
-        obj.table.push(newDoc)
+        // obj.table.push(newDoc)
+        // Store the results to the default dataset.
+        await Dataset.pushData(newDoc)
 
         await client.add(newDoc, function (err, response) {
           if (err) throw err
@@ -244,8 +250,6 @@ export const crawleer = () => {
         console.log(err)
       }
 
-      // Store the results to the default dataset.
-      // await Dataset.pushData(obj)
       // var json = JSON.stringify(obj, null, 4)
       // fs.writeFile(`${crawlDir}/documents.json`, json, (error) => {
       //   if (error) {
@@ -263,19 +267,19 @@ export const crawleer = () => {
     // This function is called if the page processing failed more than maxRequestRetries+1 times.
     failedRequestHandler({ request, log }) {
       log.info(`Request ${request.url} failed too many times.`)
-    },
+    }
   })
 
-  ;(async () => {
-    await crawler.addRequests(sites)
-    // Run the crawler and wait for it to finish.
-    await crawler.run()
-    await swap()
-    client.commit()
-    console.log("Crawler finished!")
-  })().catch((err) => {
-    console.error(err)
-  })
+    ; (async () => {
+      await crawler.addRequests(sites)
+      // Run the crawler and wait for it to finish.
+      await crawler.run()
+      await swap()
+      client.commit()
+      console.log("Crawler finished!")
+    })().catch((err) => {
+      console.error(err)
+    })
 }
 
 parentPort.postMessage(crawleer())

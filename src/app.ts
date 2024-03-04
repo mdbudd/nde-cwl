@@ -16,7 +16,16 @@ dotenv.config({ path: ".env.sample" })
 dotenv.config({ path: ".env.api" })
 
 const app: Application = express()
+const setRateLimit = require("express-rate-limit");
 
+// Rate limit middleware
+const rateLimitMiddleware = setRateLimit({
+  windowMs: 5 * 60 * 1000,
+  max: 100,
+  message: "You have exceeded your 100 requests per 5 minute limit.",
+  headers: true,
+});
+app.use(rateLimitMiddleware)
 app.use(morgan("dev"))
 app.use(helmet())
 app.use(cors())
@@ -36,7 +45,7 @@ app.get("/swagger.json", (req, res) => {
   res.send(specs)
 })
 app.get("/random", (req: Request, res: Response) => {
-  res.json({ message: "Hello World!", env: process.env.NODE_ENV == "development" ? process.env : null })
+  res.json({ message: "Hello World!" })
 })
 
 app.get<{}, MessageResponse>("/", (req, res) => {
