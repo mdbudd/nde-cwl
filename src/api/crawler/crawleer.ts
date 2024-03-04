@@ -35,9 +35,9 @@ export const crawleer = () => {
     fs.mkdirSync(screens, { recursive: true })
   }
 
-  var obj = {
-    table: []
-  }
+  // var obj = {
+  //   table: []
+  // }
 
   const contentTypes = [
     { name: "pdf", extensions: ["pdf"] },
