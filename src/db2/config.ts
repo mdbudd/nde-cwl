@@ -8,10 +8,11 @@ export const dbUser = process.env.DB_USER as string
 export const dbHost = process.env.DB_HOST
 export const dbPassword = process.env.DB_PASSWORD
 const dbDriver = process.env.DB_DRIVER as Dialect
+const dbDriverFb = "mssql" as Dialect
 
 const sequelizeConnection = new Sequelize(dbName, dbUser, dbPassword, {
   host: dbHost,
-  dialect: dbDriver
+  dialect: dbDriver || dbDriverFb
 })
 
 export default sequelizeConnection
