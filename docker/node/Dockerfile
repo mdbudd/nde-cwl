@@ -19,13 +19,6 @@ ENV CHROMIUM_PATH google-chrome-stable
 # Create working directory
 WORKDIR /usr/src/app
 
-# Copy package.json
-COPY package.json ./
-COPY package-lock.json ./
-COPY tsconfig.json ./
-COPY jest.config.js ./
-COPY .env.api ./
-COPY .env.sample ./
 COPY /src/ ./
 
 # Install NPM dependencies for function
@@ -34,15 +27,6 @@ RUN npx puppeteer browsers install chrome;
 # RUN npx playwright install; 
 RUN npm audit fix --force;
 RUN npm audit fix;
-# Copy handler function and tsconfig
-
-# configure puppeteer user
-# RUN groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
-#     && mkdir -p /home/pptruser/Downloads \
-#     && chown -R pptruser:pptruser /home/pptruser \
-#     && chown -R pptruser:pptruser /node_modules
-
-# USER pptruser
 
 # Expose app
 EXPOSE 8081
