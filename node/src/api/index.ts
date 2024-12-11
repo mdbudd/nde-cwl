@@ -2,7 +2,7 @@ import express from "express"
 import MessageResponse from "../interfaces/MessageResponse"
 import emojis from "./emojis"
 import parsers from "./parsers"
-import db from "./db"
+import db from "./db/index.sample"
 import crawler from "./crawler"
 
 const router = express.Router()

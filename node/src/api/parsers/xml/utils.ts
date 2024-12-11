@@ -45,9 +45,11 @@ const generateSeqModelCols = (data) => {
     if (type === "Date") type = "DataTypes.DATE"
 
     let contents = { type }
-    if (colData["@_CanBeNull"] === "false") contents.allowNull = false
+    // eslint-disable-next-line @typescript-eslint/dot-notation
+    if (colData["@_CanBeNull"] === "false") contents["allowNull"] = false
     if (colData["@_IsPrimaryKey"] && colData["@_IsPrimaryKey"] === "true")
-      contents.primaryKey = true
+      // eslint-disable-next-line @typescript-eslint/dot-notation
+      contents["primaryKey"] = true
     obj[colData["@_Name"]] = contents
   })
   return obj
