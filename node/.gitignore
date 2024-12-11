@@ -1,0 +1,14 @@
+node_modules
+downloads
+
+/src/api/crawler/sites-2.json
+
+/src/api/db/index.ts
+
+/src/api/db/sql/*
+!/src/api/db/sql/*.sample.sql
+
+/src/api/db/models/*
+!/src/api/db/models/*.sample.ts
+
+/src/api/parsers/sxn/*

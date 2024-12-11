@@ -1,0 +1,1 @@
+node node_modules/xslt3/xslt3.js -xsl:src/api/parsers/sxn/xslt/report.xsl -export:src/api/parsers/sxn/sef/report.sef.json -nogo -ns:##html5

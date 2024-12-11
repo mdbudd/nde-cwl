@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   node:
@@ -11,9 +11,11 @@ services:
       # - .:/srv/app
       # - .:/usr/src/app
       - ./data:/usr/src/app/data
+      - ./node:/usr/src/app/node
     # working_dir: /srv/app
     ports:
       - "8081:8081"
+      - "8082:8082"
     # command: >
     #   bash -c '
     #     npm install;
@@ -25,6 +27,9 @@ services:
     #     npm run server;
     #     tail -F dev/null;
     #   '
+    networks:
+      - external-net
+
   python:
     container_name: python2
     build:
@@ -35,11 +40,9 @@ services:
       - "8001:8001"
     volumes:
       - ./python:/python
+    networks:
+      - external-net
 
-
-  
 # create external-net if it doesn't exist
-networks: 
-  default:  
-    name: external-net
-    external: true
+networks:
+  external-net:

@@ -1,11 +1,12 @@
 dist
 coverage
 /src/db
-node_modules
+/node_modules
 storage
 
 # dotenv environment variables file
-.env
+.env*
+!.env*.sample
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

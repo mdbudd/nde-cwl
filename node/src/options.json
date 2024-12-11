@@ -1,0 +1,31 @@
+{
+    "definition": {
+        "openapi": "3.0.0",
+        "info": {
+            "title": "T&T API",
+            "version": "0.1.0",
+            "description": "This express API application is evolving into a way of trying processes, data connectivity & tooling. Public areas are documented with Swagger",
+            "license": {
+                "name": "MIT",
+                "url": "https://spdx.org/licenses/MIT.html"
+            },
+            "contact": {
+                "name": "localhost",
+                "url": "https://localhost",
+                "email": "info@email.com"
+            }
+        },
+        "externalDocs": {
+            "description": "swagger.json",
+            "url": "/swagger.json"
+        },
+        "servers": [
+            {
+                "url": "http://localhost:8081"
+            }
+        ]
+    },
+    "apis": [
+        "./src/api/**/*.ts"
+    ]
+}

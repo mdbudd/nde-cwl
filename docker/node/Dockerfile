@@ -1,6 +1,6 @@
 # Filename: Dockerfile
 
-FROM node:18 as node
+FROM node:20 AS node
 
 
 RUN apt-get update \
@@ -19,7 +19,8 @@ ENV CHROMIUM_PATH google-chrome-stable
 # Create working directory
 WORKDIR /usr/src/app
 
-COPY /src/ ./
+COPY /node/ ./
+COPY /data/ ./
 
 # Install NPM dependencies for function
 RUN npm install
