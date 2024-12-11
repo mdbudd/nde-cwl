@@ -1,0 +1,53 @@
+#graphql
+type Subscription {
+  numberIncremented: Int
+}
+
+type Query {
+  currentNumber: Int
+  hello: String
+  places(name: String!): [Place]
+  weather(latitude: Float!, longitude: Float!): Weather
+  test: String
+  greeting: String
+  books: [Book]
+}
+
+type Place {
+  id: ID
+  name: String
+  country: String
+  latitude: Float
+  longitude: Float
+}
+
+type Weather {
+  latitude: Float
+  longitude: Float
+  temp_unit: String
+  wind_unit: String
+  daily: [CurrentWeather]
+}
+
+type CurrentWeather {
+  date: String
+  day: Int
+  temperature: Float
+  icon: String
+  wind_speed: Float
+  description: String
+}
+
+# type Mutation {
+# }
+
+type Book {
+  id: ID
+  title: String
+  author: Author
+}
+
+type Author {
+  name: String
+  email: String
+}

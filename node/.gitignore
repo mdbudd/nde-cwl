@@ -1,5 +1,6 @@
 node_modules
 downloads
+cert
 
 /src/api/crawler/sites-2.json
 

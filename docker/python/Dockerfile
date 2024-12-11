@@ -1,5 +1,5 @@
 
-FROM python:3.12 as python
+FROM python:3.12 AS python
 RUN mkdir /python
 WORKDIR /python
 
