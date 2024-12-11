@@ -272,15 +272,15 @@ export const crawleer = () => {
   })
 
     ; (async () => {
-      await crawler.addRequests(sites)
-      // Run the crawler and wait for it to finish.
-      await crawler.run()
-      await swap()
-      client.commit()
-      console.log("Crawler finished!")
-    })().catch((err) => {
-      console.error(err)
-    })
+    await crawler.addRequests(sites)
+    // Run the crawler and wait for it to finish.
+    await crawler.run()
+    await swap()
+    client.commit()
+    console.log("Crawler finished!")
+  })().catch((err) => {
+    console.error(err)
+  })
 }
 
 parentPort.postMessage(crawleer())

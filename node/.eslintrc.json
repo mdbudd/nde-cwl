@@ -9,7 +9,7 @@
   },
   "extends": "airbnb-typescript/base",
   "plugins": ["import", "@typescript-eslint"],
-  "ignorePatterns": ["dist/**/*.js"],
+  "ignorePatterns": ["dist/**/*.js", "/src/api/parsers/sxn/*"],
   "rules": {
     "comma-dangle": 0,
     "@typescript-eslint/comma-dangle": 0,
@@ -23,7 +23,7 @@
     "camelcase": 0,
     "import/extensions": 0,
     "@typescript-eslint/no-redeclare": 0,
-    "@typescript-eslint/indent": ["error",  { "VariableDeclarator": 2 }]
+    "@typescript-eslint/indent": ["error", 2]
   },
   "settings": {
     "import/parsers": {

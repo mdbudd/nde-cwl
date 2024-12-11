@@ -30,7 +30,7 @@ export const createXml = async (request: Request, response: Response) => {
 
 const generateSeqModelCols = (data) => {
   let obj = {}
-  data.map((colItem, i) => {
+  data.map((colItem) => {
     let colData = colItem
     let type = colData["@_DbType"]
     type = type.split(" ")[0]
@@ -45,16 +45,16 @@ const generateSeqModelCols = (data) => {
     if (type === "Date") type = "DataTypes.DATE"
 
     let contents = { type }
-    if (colData["@_CanBeNull"] === "false") contents["allowNull"] = false
+    if (colData["@_CanBeNull"] === "false") contents.allowNull = false
     if (colData["@_IsPrimaryKey"] && colData["@_IsPrimaryKey"] === "true")
-      contents["primaryKey"] = true
+      contents.primaryKey = true
     obj[colData["@_Name"]] = contents
   })
   return obj
 }
 const generateEfModelCols = (data) => {
   let arr = []
-  data.map((colItem, i) => {
+  data.map((colItem) => {
     let colData = colItem
     let type = colData["@_DbType"]
     type = type.split(" ")[0]

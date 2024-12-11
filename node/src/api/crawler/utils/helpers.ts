@@ -1,7 +1,7 @@
 import xlsx from "node-xlsx"
 import { ExifImage } from "exif"
 
-var fs = require("fs")
+// var fs = require("fs")
 export const getExtensionFromUrl = (url) => {
   var extension = ""
   var pattern = /\.([0-9a-z]+)(?:[\?#]|$)/i
@@ -39,6 +39,7 @@ export const getContentType = (url) => {
   return contentType
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getCategories = (file, dest) => {
   const workSheetsFromFile = xlsx.parse(file)
   let sites = workSheetsFromFile[1].data.filter((e) => e.length)
@@ -59,10 +60,12 @@ export const getCategories = (file, dest) => {
   return cats
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getImageData = async (image, dest) => {
   let img = { message: "None" }
   let fimg = await fetch(image)
   image = Buffer.from(await fimg.arrayBuffer())
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return new Promise(function (resolve, reject) {
     try {
       new ExifImage({ image }, async function (error, exifData) {
