@@ -1,5 +1,6 @@
 import { RESTDataSource } from "@apollo/datasource-rest"
-import { codes } from "../constants/weather"
+import weatherAttributes from "../data/weather/attributes.json"
+import weatherCodes from "../data/weather/codes.json"
 
 export class PlacesAPI extends RESTDataSource {
   override baseURL = "https://geocoding-api.open-meteo.com/v1/"
@@ -50,14 +51,14 @@ export class WeatherAPI extends RESTDataSource {
     for (let i = 0; i < time.length; i++) {
       var date = new Date(time[i])
       const day = date.getDay()
-      const code = codes.filter((codeItem) => weatherCode[i] === codeItem.id)[0]
+      const code = weatherCodes.filter((codeItem) => weatherCode[i] === codeItem.id)[0]
       dailyData.push({
         date: date.toISOString(),
         day,
         temperature: temp[i],
         wind_speed: wind[i],
-        icon: code.attributes.icon,
-        description: code.attributes.description,
+        icon: weatherAttributes[code.attributes].icon,
+        description: weatherAttributes[code.attributes].description,
       })
     }
 

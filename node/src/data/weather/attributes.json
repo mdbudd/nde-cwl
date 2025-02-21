@@ -1,0 +1,45 @@
+[
+  { "description": "Clear sky", "icon": "clear" },
+  {
+    "description": "Mainly clear, partly cloudy, and overcast",
+    "icon": "part_cloud"
+  },
+  { "description": "Fog and depositing rime fog", "icon": "fog" },
+  {
+    "description": "Drizzle: Light, moderate, and dense intensity",
+    "icon": "drizzle"
+  },
+  {
+    "description": "Freezing Drizzle: Light and dense intensity",
+    "icon": "freezing_drizzle"
+  },
+  {
+    "description": "Rain: Slight, moderate and heavy intensity",
+    "icon": "rain_slight"
+  },
+  {
+    "description": "Freezing Rain: Light and heavy intensity",
+    "icon": "freezing_rain"
+  },
+  {
+    "description": "Snow fall: Slight, moderate, and heavy intensity",
+    "icon": "snow"
+  },
+  { "description": "Snow grains", "icon": "slight_snow" },
+  {
+    "description": "Rain showers: Slight, moderate, and violent",
+    "icon": "showers"
+  },
+  {
+    "description": "Snow showers slight and heavy",
+    "icon": "snow_showers"
+  },
+  {
+    "description": "Thunderstorm: Slight or moderate",
+    "icon": "thunder"
+  },
+  {
+    "description": "Thunderstorm with slight and heavy hail",
+    "icon": "thunder_rain"
+  }
+]
