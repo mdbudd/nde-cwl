@@ -3,7 +3,8 @@ import { WeatherAPI, PlacesAPI } from "./rest"
 
 import DataLoader from "dataloader"
 
-import { authors /*, books*/ } from "../data/data"
+import books from "../data/books.json"
+import authors from "../data/authors.json"
 
 interface ContextValue {
   user: any
@@ -59,7 +60,8 @@ export const resolvers = {
         args.longitude.toString()
       )
       return weather
-    }
+    },
+    books: () => books,
   },
 
   Book: {

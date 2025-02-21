@@ -23,7 +23,7 @@ import { PlacesAPI, WeatherAPI } from "./resources/rest"
 import { resolvers } from "./resources/resolvers"
 import { typeDefs } from "./resources/typedefs"
 import { verifyAccessToken } from "./resources/utils"
-import optionsJson from "./options.json"
+import optionsJson from "./data/options.json"
 
 const dotenv = require("dotenv")
 dotenv.config({ path: ".env.global" })
